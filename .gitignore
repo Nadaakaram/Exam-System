@@ -1,0 +1,23 @@
+# ==== Node.js ====
+backend/node_modules/
+backend/.env
+backend/logs/
+backend/.DS_Store
+
+# ==== Angular ====
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/cache/
+frontend/.env
+frontend/.DS_Store
+
+# ==== System Files ====
+.DS_Store
+Thumbs.db
+
+# ==== Logs ====
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*

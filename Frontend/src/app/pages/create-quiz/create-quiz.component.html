@@ -1,0 +1,78 @@
+<form [formGroup]="quizForm" (ngSubmit)="onSubmit()">
+  <div class="form-group p-2" >
+    <label for="title">Quiz Title:</label>
+    <input
+      class="form-control"
+      id="title"
+      formControlName="title"
+      type="text"
+    />
+    @if (quizForm.get('title')?.invalid && quizForm.get('title')?.touched) {
+    <div style="color: red">Title is required.</div>
+    }
+  </div>
+
+  <div formArrayName="questions" class="form-group">
+    @for (questionGroup of questions.controls; let i = $index; track $index) {
+    <div
+      [formGroupName]="i"
+      style="margin-bottom: 20px; padding: 10px; border: 1px solid #ccc"
+    >
+      <label>Question {{ i + 1 }}:</label>
+      <input class="form-control" formControlName="question" type="text" />
+      @if (questionGroup.get('question')?.invalid &&
+      questionGroup.get('question')?.touched) {
+      <div style="color: red">Question text is required.</div>
+      }
+
+      <div formArrayName="options" style="margin-left: 20px; margin-top: 10px">
+        <label>Options:</label>
+        @for (optionGroup of getOptions(i).controls; let j = $index; track
+        $index) {
+        <div
+          [formGroupName]="j"
+          style="display: flex; align-items: center; margin-bottom: 5px"
+        >
+          <input class="form-control" formControlName="text" placeholder="Option text" type="text" />
+          <label style="margin-left: 10px">
+            <input class="form-check-input" type="checkbox" formControlName="isCorrect" />
+            Correct
+          </label>
+          <button
+            class="btn btn-danger"
+            type="button"
+            (click)="removeOption(i, j)"
+            [disabled]="getOptions(i).length <= 2"
+            style="margin-left: 10px"
+          >
+            Remove Option
+          </button>
+        </div>
+        }
+        <button class="btn btn-primary" type="button" (click)="addOption(i)">Add Option</button>
+      </div>
+
+      <button
+        type="button"
+        (click)="removeQuestion(i)"
+        class="btn btn-danger"
+      >
+        Remove Question
+      </button>
+
+    </div>
+    }
+  </div>
+  <button class="btn btn-primary mx-2" type="button" (click)="addQuestion()">
+    Add Question
+  </button>
+
+  <button
+    class="btn btn-success"
+    type="submit"
+    [disabled]="quizForm.invalid"
+
+  >
+    Create Quiz
+  </button>
+</form>

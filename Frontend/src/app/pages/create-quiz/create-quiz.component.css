@@ -1,0 +1,15 @@
+input[type="text"] {
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 300px;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
