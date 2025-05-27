@@ -8,9 +8,8 @@ export class QuizService {
   private apiUrl = 'http://localhost:5000/api/quizzes';
   constructor(private http: HttpClient) {}
 
-   // دالة إنشاء امتحان جديد
   createQuiz(quizData: any): Observable<any> {
-    const token = localStorage.getItem('token'); // تأكدي إن التوكن بيتخزن عند تسجيل الدخول
+    const token = localStorage.getItem('token'); 
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`
     });
@@ -18,7 +17,6 @@ export class QuizService {
     return this.http.post(this.apiUrl, quizData, { headers });
   }
 
-  // دالة جلب كل الامتحانات
   getAllQuizzes(): Observable<any> {
     return this.http.get(this.apiUrl);
   }
