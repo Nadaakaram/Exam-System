@@ -34,9 +34,11 @@ export class StudentDashboardComponent implements OnInit{
   }
 
   get filteredQuizzes() {
-    if (!this.searchText) {
-      return this.quizzes;
+    if (!this.searchText || this.searchText.trim() === '') {
+      return [];
     }
     return this.quizzes.filter(quiz => quiz.title.toLowerCase().includes(this.searchText.toLowerCase()));
   }
+
+
 }
