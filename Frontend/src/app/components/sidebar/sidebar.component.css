@@ -1,0 +1,39 @@
+
+
+.profile-img {
+  width: 50px;
+  height: 50px;
+}
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 256px;
+  overflow-y: auto;
+  background-color: #fff;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+.profile-img {
+  border-radius: 50%;
+  border: 2px solid #8e62f0;
+  box-shadow: 0 0 8px rgba(142, 98, 240, 0.5);
+}
+.hover-bg-primary-light{
+  transition: background-color 0.3s ease;
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin-bottom: 5px;
+}
+.hover-bg-primary-light:hover {
+  background-color: #e0d6ff;
+  cursor: pointer;
+
+}
+
+.hover-text-primary:hover {
+  color: #7a43e8;
+}
+

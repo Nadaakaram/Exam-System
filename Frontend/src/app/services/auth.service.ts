@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,12 @@ private baseUrl = 'http://localhost:5000/api/auth';
     return this.http.post(`${this.baseUrl}/register`, userData);
   }
 
+
   login(credentials: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/login`, credentials);
+    return this.http.post(`${this.baseUrl}/login`, credentials).pipe(
+      tap((response: any) => {
+        localStorage.setItem('token', response.token);
+      })
+    );
   }
 }
