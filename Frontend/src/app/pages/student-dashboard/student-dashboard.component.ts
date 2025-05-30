@@ -13,10 +13,10 @@ import { SResultsComponent } from "../../components/s-results/s-results.componen
 @Component({
   selector: 'app-student-dashboard',
   imports: [CommonModule, FormsModule, RouterModule, SidebarComponent, SDashboardComponent, ProfileComponent, SResultsComponent],
-  templateUrl: './student-dashboard.component.html',
+templateUrl: './student-dashboard.component.html',
   styleUrl: './student-dashboard.component.css'
 })
-export class StudentDashboardComponent {
+export class StudentDashboardComponent implements OnInit {
   searchText = '';
   quizzes: any[] = [];
   user: any = null;
@@ -25,8 +25,12 @@ selectedComponent: string = 'sdashboard';
 onComponentChanged(component: string) {
   this.selectedComponent = component;
 }
-  constructor() {}
-
+  constructor(private userService: UserService) {}
+  ngOnInit(): void {
+      this.userService.getCurrentUser().subscribe((user) => {
+    this.userService.setUser(user); 
+  })
+  }
 }
 
 

@@ -23,18 +23,28 @@ selectedComponent: string = 'dashboard';
 
   constructor(private userService: UserService, private router: Router) {}
 
-  ngOnInit(): void {
-    this.userService.getCurrentUser().subscribe({
-      next: (user) => {
-        this.user = user;
-        console.log('User loaded successfully', this.user);
-      },
-      error: (err) => {
-        console.error('Failed to load user', err);
-        this.user = null;
-      },
-    });
-  }
+ngOnInit(): void {
+  this.userService.currentUser.subscribe({
+    next: (user) => {
+      this.user = user;
+    },
+    error: (err) => {
+      console.error('Failed to load user', err);
+    },
+  });
+
+  this.userService.getCurrentUser().subscribe({
+    next: (user) => {
+      this.userService.setUser(user);
+    },
+    error: (err) => {
+      console.error('Failed to load user', err);
+    },
+  });
+}
+
+
+
 
   logout(){
     localStorage.removeItem('token');

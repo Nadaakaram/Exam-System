@@ -23,7 +23,7 @@
                   id="name"
                   type="text"
                   class="form-control rounded-pill"
-                  [(ngModel)]="user.name"
+                  [(ngModel)]="editedUser.name"
                   name="name"
                 />
               </div>
@@ -34,7 +34,7 @@
                   id="email"
                   type="email"
                   class="form-control rounded-pill"
-                  [(ngModel)]="user.email"
+                  [(ngModel)]="editedUser.email"
                   disabled
                   name="email"
                 />
@@ -44,7 +44,7 @@
                 <button
                   class="btn btn-primary rounded-pill"
                   (click)="saveProfile()"
-                  [routerLink]="['/student-dashboard']"
+
                 >
                   Save Changes
                 </button>

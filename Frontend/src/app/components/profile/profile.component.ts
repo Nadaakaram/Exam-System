@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
   user: any = null;
+  editedUser: any = {};
 
   constructor(private userService: UserService) {}
 
@@ -17,6 +18,7 @@ export class ProfileComponent implements OnInit {
     this.userService.getCurrentUser().subscribe({
       next: (data) => {
         this.user = data;
+        this.editedUser = { ...data }; 
       },
       error: (err) => {
         console.error('Error loading user', err);
@@ -24,17 +26,20 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  saveProfile() {
-    // هتضيفي هنا كود الحفظ لو عندك API لتحديث المستخدم
-    console.log('Save profile clicked', this.user);
-    this.userService.updateUser(this.user).subscribe({
-      next: (data) => {
-        console.log('Profile updated successfully', data);
+saveProfile() {
+  this.userService.updateUser(this.editedUser).subscribe({
+    next: () => {
+      this.userService.getCurrentUser().subscribe({
+        next: (freshUser) => {
+          this.user = freshUser;
+          this.userService.setUser(freshUser);
+        }
+      });
+    },
+    error: (err) => {
+      console.error('Error updating profile', err);
+    }
+  });
+}
 
-      },
-      error: (err) => {
-        console.error('Error updating profile', err);
-      }
-    });
-  }
 }
