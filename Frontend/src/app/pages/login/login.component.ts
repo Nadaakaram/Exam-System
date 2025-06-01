@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
         },
         error: (err: any) => {
           console.error('Login failed.', err);
+          console.log(err.error.message );
         }
       })
       console.log('Login Form Submitted!', this.loginForm.value);

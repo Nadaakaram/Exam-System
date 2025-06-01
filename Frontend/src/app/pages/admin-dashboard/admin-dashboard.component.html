@@ -1,2 +1,71 @@
-<p>admin-dashboard works!</p>
-<app-create-quiz></app-create-quiz>
+<div class="dashboard-container">
+  <div class="dashboard-card">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h2>Tabor Study</h2>
+      <ul>
+        <li [class.active]="currentSection === 'dashboard'" (click)="setSection('dashboard')">Dashboard</li>
+        <!-- <li [class.active]="currentSection === 'prize-quizzes'" (click)="setSection('prize-quizzes')">Prize Quizzes</li> -->
+        <li [class.active]="currentSection === 'exams'" (click)="setSection('exams')">Exams</li>
+        <li [class.active]="currentSection === 'students'" (click)="setSection('students')">Students</li>
+        <li>Logout</li>
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      @switch (currentSection) {
+        @case ('dashboard') {
+          <div class="header">
+            <h2>Prize Quizzes</h2>
+            <button class="add-btn" (click)="toggleCreateQuiz()">+ Add New Quiz</button>
+          </div>
+          @if (!showCreateQuiz) {
+            <div class="filters">
+              <input type="text" placeholder="Search..." />
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <!-- <th>Description</th>
+                  <th>Level</th>
+                  <th>Created Date</th>
+                  <th>Exam Status</th>
+                  <th>Category</th>
+                  <th>Status</th>
+                  <th>Action</th> -->
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let quiz of quizzes">
+                  <td>{{ quiz.title }}</td>
+                  <!-- <td>{{ quiz.description }}</td>
+                  <td>{{ quiz.level }}</td>
+                  <td>{{ quiz.date }}</td> -->
+                  <td><span class="status" [ngClass]="quiz.examStatus">{{ quiz.examStatus }}</span></td>
+                  <!-- <td>{{ quiz.category }}</td>
+                  <td><span class="label">{{ quiz.status }}</span></td> -->
+                  <td>
+                    <button class="action-btn edit-btn"><i class="bi bi-pencil-square"></i>Edit</button>
+                    <button class="action-btn delete-btn"><i class="bi bi-trash"></i>Delete</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          } @else {
+            <app-create-quiz (backToDashboard)="toggleCreateQuiz()"></app-create-quiz>
+          }
+        }
+        @case ('exams') {
+          <app-exams></app-exams>
+        }
+     
+        @case ('students') {
+          <app-students></app-students>
+        }
+     
+      }
+    </div>
+  </div>
+</div>

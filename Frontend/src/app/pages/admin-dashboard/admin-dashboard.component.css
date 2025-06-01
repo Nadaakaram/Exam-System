@@ -1,0 +1,196 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  font-family: Arial, sans-serif;
+}
+:host {
+  display: block;
+  background: linear-gradient(180deg, #f3eaff 0%, #e5c8ff 30%, #d5a2fb 60%, #c876f4 100%);
+  min-height: 100vh;
+  padding: 40px;
+}
+
+/* .dashboard-container {
+  max-width: 1400px;  
+  margin: auto; 
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  min-height: 80vh; 
+} */
+ .dashboard-container {
+  max-width: 1400px;
+  margin: 40px auto;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+
+ .dashboard-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+   display: flex;
+  padding: 20px;
+}
+
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background: #f5f0ff;
+  padding: 20px;
+  border-right: 1px solid #ddd;
+}
+
+
+.sidebar h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin-bottom: 12px;
+  cursor: pointer;
+  color: #555;
+}
+
+.sidebar .active {
+  font-weight: bold;
+  color: #8c3cf9;
+}
+
+/* Main Content
+.main-content {
+  flex-grow: 1;
+  padding: 30px;
+  background-color: #fefefe;
+} */
+.main-content {
+  flex: 1;
+  padding: 30px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.header h2 {
+  margin: 0;
+}
+
+.header .add-btn {
+  background-color: #8c3cf9;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* .filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+} */
+
+.filters input,
+.filters select,
+.filters .category-btn {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.filters .category-btn {
+  background-color: white;
+  border: 1px solid #8c3cf9;
+  color: #8c3cf9;
+  cursor: pointer;
+}
+
+/* Table */
+/* table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+} */
+ table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+th {
+  font-weight: bold;
+  color: #333;
+}
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Edit button */
+.edit-btn {
+  background-color: #6c63ff;
+  color: #fff;
+}
+
+.edit-btn:hover {
+  background-color: #574ee0;
+  transform: scale(1.05);
+}
+
+/* Delete button */
+.delete-btn {
+  background-color: #ff5e5e;
+  color: #fff;
+}
+
+.delete-btn:hover {
+  background-color: #e04444;
+  transform: scale(1.05);
+}
+
+/* Bootstrap icon inside buttons */
+.action-btn i {
+  font-size: 16px;
+}
+ul li.active {
+  background-color: #e0d4ff;
+  font-weight: bold;
+}

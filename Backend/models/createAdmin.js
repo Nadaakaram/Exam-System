@@ -40,6 +40,7 @@ async function createAdmin() {
     mongoose.disconnect();
   } catch (err) {
     console.error("Error creating admin:", err);
+    
     mongoose.disconnect();
   }
 }
