@@ -12,10 +12,10 @@ import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-register',
-  standalone: true, // Add this line for standalone component
+  standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'], // Fix typo: styleUrl -> styleUrls
+  styleUrls: ['./register.component.css'],
   providers: [AuthService],
 })
 export class RegisterComponent implements OnInit {
@@ -40,12 +40,18 @@ export class RegisterComponent implements OnInit {
       ],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
+  confirmPassword: ['', Validators.required],
     });
   }
 
   onSubmit(): void {
     if (this.registerForm.valid) {
-      const { name, email, password } = this.registerForm.value;
+      const { name, email, password, confirmPassword } = this.registerForm.value;
+
+      if (password !== confirmPassword) {
+        this.registerForm.get('confirmPassword')?.setErrors({ passwordMismatch: true });
+        return;
+      }
 
       this.authService.register({ name, email, password }).subscribe({
         next: (res: any) => {
@@ -62,7 +68,6 @@ export class RegisterComponent implements OnInit {
       });
     } else {
       console.log('Form is invalid');
-      // Optionally, you can mark all fields as touched to show validation errors
       this.registerForm.markAllAsTouched();
     }
   }

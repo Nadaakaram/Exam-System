@@ -1,0 +1,38 @@
+<div
+  class="sidebar bg-white shadow-lg d-flex flex-column justify-content-between"
+>
+  <div
+    class="p-4 border-bottom border-light d-flex align-items-center justify-content-between justify-content-lg-start"
+  >
+    <h1 class="h4 fw-bold text-dark mb-0">Quizzes</h1>
+  </div>
+
+  <div class="p-4 border-bottom border-light">
+    <div class="d-flex align-items-center">
+      <img
+        src="https://api.dicebear.com/9.x/bottts/svg"
+        alt="User Avatar"
+        class="rounded-circle border avatar-md me-3 profile-img"
+      />
+      <div>
+        <p class="h6 fw-semibold text-dark mb-0">{{ user?.name }}</p>
+        <p class="text-muted small mb-0">{{ user?.email }}</p>
+      </div>
+    </div>
+  </div>
+
+  <nav
+    class="flex-grow-1 p-4 overflow-auto d-flex flex-column"
+    style="height: calc(100vh - 180px)"
+  >
+<ul class="list-unstyled mb-0">
+  <li class="hover-bg-primary-light" (click)="changeComponent('sdashboard')">Dashboard</li>
+  <li class="hover-bg-primary-light" (click)="changeComponent('sresults')">Results</li>
+  <li class="hover-bg-primary-light" (click)="changeComponent('profile')">Profile</li>
+</ul>
+
+<ul class="list-unstyled mt-auto mb-0">
+  <li class="hover-bg-primary-light" (click)="logout()">Logout</li>
+</ul>
+  </nav>
+</div>
