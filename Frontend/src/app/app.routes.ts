@@ -5,18 +5,26 @@ import { StudentDashboardComponent } from './pages/student-dashboard/student-das
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 import { CreateQuizComponent } from './pages/create-quiz/create-quiz.component';
 import { QuizComponent } from './pages/quiz/quiz.component';
+import { ExamsComponent } from './pages/exams/exams.component';
+import { StudentsComponent } from './pages/students/students.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SDashboardComponent } from './components/s-dashboard/s-dashboard.component';
 import { SResultsComponent } from './components/s-results/s-results.component';
 export const routes: Routes = [
   {path: '', redirectTo: '/register', pathMatch: 'full' }, // Redirect to register page by default
-    { path: 'register', component: RegisterComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'student-dashboard', component: StudentDashboardComponent },
   { path: 'admin-dashboard', component: AdminDashboardComponent },
   { path: 'create-quiz', component: CreateQuizComponent },
   { path: 'quiz/:id', component: QuizComponent },
+
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: 'prize-quizzes/create', component: CreateQuizComponent },
+  { path: 'exams', component: ExamsComponent },
+  { path: 'students', component: StudentsComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'sDashboard', component: SDashboardComponent },
   { path: 'sResults', component: SResultsComponent },
 ];
+

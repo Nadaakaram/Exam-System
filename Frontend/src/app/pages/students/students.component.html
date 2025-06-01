@@ -1,0 +1,24 @@
+<div class="students-container">
+  <h2>Students and Exam Results</h2>
+
+  <div *ngFor="let student of students" class="student-card">
+    <h3>{{ student.name }}</h3>
+    <p>Email: {{ student.email }}</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Exam</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let exam of student.exams">
+          <td>{{ exam.name }}</td>
+          <td>{{ exam.score }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
