@@ -5,6 +5,8 @@ import { StudentDashboardComponent } from './pages/student-dashboard/student-das
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 import { CreateQuizComponent } from './pages/create-quiz/create-quiz.component';
 import { QuizComponent } from './pages/quiz/quiz.component';
+import { ResultComponent} from './pages/result/result.component';
+
 
 export const routes: Routes = [
   {path: '', redirectTo: '/register', pathMatch: 'full' }, // Redirect to register page by default
@@ -13,5 +15,8 @@ export const routes: Routes = [
   { path: 'student-dashboard', component: StudentDashboardComponent },
   { path: 'admin-dashboard', component: AdminDashboardComponent },
   { path: 'create-quiz', component: CreateQuizComponent },
-  { path: 'quiz/:id', component: QuizComponent }
+  { path: 'quiz/:id', component: QuizComponent },
+  { path: '', component: StudentDashboardComponent },
+  { path: 'result', component: ResultComponent },
+  { path: '**', redirectTo: '' }
 ];

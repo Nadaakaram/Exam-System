@@ -1,1 +1,55 @@
-<p>quiz works!</p>
+<div class="quiz-container" *ngIf="!isLoading && quiz">
+  <div class="quiz-header">
+    <div class="quiz-meta">
+      <span class="quiz-title">{{quiz.title}}</span>
+      <span class="questions-count">{{quiz.questions.length}} Questions</span>
+    </div>
+    
+    <div class="progress">
+      Question: <span class="current">{{currentQuestionIndex + 1}}</span>/<span class="total">{{quiz.questions.length}}</span>
+    </div>
+    
+    
+  </div>
+  
+  <div class="question-section" *ngIf="currentQuestion">
+    <div class="question-text">{{currentQuestion.questionText}}</div>
+    
+    <div class="options-container">
+      <label class="option" *ngFor="let option of currentQuestion.options as options; let i = index"
+>
+        <input 
+        type="radio" 
+        name="answer" 
+        [value]="i" 
+        [checked]="userAnswers[currentQuestionIndex] === i"
+        (change)="onSelectAnswer(i)">
+        <span class="option-text">{{option.optionText}}</span>
+      </label>
+      
+      
+    </div>
+  </div>
+  
+  <div class="quiz-footer">
+    <button 
+    class="result-btn"
+    *ngIf="isAllAnswered() && !isSubmitted"
+    (click)="submitQuiz()">See Result</button>
+    
+    <div class="navigation">
+      <button 
+      class="prev-btn"
+      (click)="prevQuestion()"
+      [disabled]="currentQuestionIndex === 0">Previous</button>
+      <button 
+      class="next-btn"
+      (click)="nextQuestion()"
+      [disabled]="currentQuestionIndex === quiz.questions.length - 1 || userAnswers[currentQuestionIndex] === null">Next</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isLoading" class="loading">
+  Loading quiz...
+</div>

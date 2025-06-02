@@ -122,7 +122,7 @@
     @for (quiz of quizzes; track quiz.title) {
       <div
         class="list-group-item d-flex align-items-center justify-content-between shadow-sm rounded mb-3 hover-shadow-md"
-        [routerLink]="['/quiz', quiz._id]"
+        (click)="navigateToQuiz(quiz._id)"
         style="cursor: pointer;"
       >
         <div class="d-flex align-items-center">

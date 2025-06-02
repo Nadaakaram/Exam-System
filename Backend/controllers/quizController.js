@@ -1,6 +1,7 @@
-// const Quiz = require('../models/quiz.model');
-
 const Quiz = require("../models/Quiz");
+const User = require('../models/User');
+const Result = require("../models/Result");
+
 
 const iconMap = {
   html: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
@@ -61,6 +62,69 @@ exports.getQuizById = async (req, res) => {
       return res.status(404).json({ message: 'Quiz not found' });
     }
     res.json(quiz);
+  } catch (err) {
+    res.status(500).json({ message: 'Server Error', error: err.message });
+  }
+};
+
+exports.submitQuiz = async (req, res) => {
+
+  const quizId = req.params.id;
+  const userId = req.user.id;
+  const { answers } = req.body;
+
+  try {
+    if (!req.user || !req.user.id) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
+    const quiz = await Quiz.findById(quizId);
+    if (!quiz) return res.status(404).json({ message: 'Quiz not found' });
+
+
+
+    let score = 0;
+    quiz.questions.forEach((question, index) => {
+  const correctIndex = question.options.findIndex(opt => opt.isCorrect === true);
+  if (answers[index] === correctIndex) {
+    score++;
+  }
+});
+
+    const result = new Result({
+      userId,
+      quizId,
+      score,
+      totalQuestions: quiz.questions.length,
+      answers,
+      percentage: (score / quiz.questions.length) * 100
+    });
+    await result.save();
+
+    await User.findByIdAndUpdate(userId, {
+      $push: {
+        exams: {
+          name: quiz.title,
+          score: score
+        }
+      }
+    });
+
+    res.status(200).json({ 
+      score,
+      total: quiz.questions.length,
+      percentage: (score / quiz.questions.length) * 100
+    });
+  } catch (err) {
+    console.error('Server error:', err);
+    res.status(500).json({ message: 'Server Error', error: err.message });
+  }
+};
+
+// Get user results
+exports.getUserResults = async (req, res) => {
+  try {
+    const results = await Result.find({ userId: req.user.id });
+    res.status(200).json(results);
   } catch (err) {
     res.status(500).json({ message: 'Server Error', error: err.message });
   }

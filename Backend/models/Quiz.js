@@ -16,7 +16,7 @@ const quizSchema = new mongoose.Schema({
   // category: String,
   icon: {type : String, default: ""},
   score: { type: Number, default: 0},
-  createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' } // لو بتحبي تعملي ارتباط بالـ admin
+  createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 }, { timestamps: true });
 
 module.exports = mongoose.model("Quiz", quizSchema);
