@@ -12,10 +12,10 @@ import { Quiz, Question, Result } from '../models/quiz.model';
 })
 export class QuizService {
 
-  // private apiUrl = 'http://localhost:5000/api/quizzes';
-  private apiUrl = `${environment.apiUrl}/quizzes`;
+  private apiUrl = 'http://localhost:5000/api/quizzes';
+  // private apiUrl = `${environment.apiUrl}/quizzes`;
 
-
+// private apiUrl = 'http://localhost:5000/api/quizzes';
 
 
   constructor(private http: HttpClient) {}
@@ -34,10 +34,13 @@ export class QuizService {
   }
 
 
-  getQuizById(id: string): Observable<Quiz> {
-    return this.http.get<Quiz>(`${this.apiUrl}/${id}`);
-  }
+  // getQuizById(id: string): Observable<Quiz> {
+  //   return this.http.get<Quiz>(`${this.apiUrl}/${id}`);
+  // }
 
+  getQuizById(id: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${id}`);
+}
 
   submitQuiz(quizId: string, answers: number[]): Observable<any> {
   const token = localStorage.getItem('token');

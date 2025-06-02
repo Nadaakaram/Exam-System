@@ -6,11 +6,11 @@ const verifyToken = async (req, res, next) => {
   const authHeader = req.headers.authorization;
 
 
-//   if (!authHeader || !authHeader.startsWith("Bearer ")) {
-//     return res.status(401).json({ message: "Access denied. No token provided." });
-//   }
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return res.status(401).json({ message: "Access denied. No token provided." });
+  }
 
-//   const token = authHeader.split(" ")[1];
+  const token = authHeader.split(" ")[1];
 
 
   try {
@@ -29,4 +29,4 @@ const verifyToken = async (req, res, next) => {
 };
 
 
-// module.exports = verifyToken;
+module.exports = verifyToken;

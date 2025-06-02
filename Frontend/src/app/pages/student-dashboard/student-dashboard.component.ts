@@ -36,9 +36,9 @@ onComponentChanged(component: string) {
 
   }
 
-  // navigateToQuiz(quizId: string): void {
-  //   this.router.navigate(['/quiz', quizId]);
-  // }
+  navigateToQuiz(quizId: string): void {
+    this.router.navigate(['/quiz', quizId]);
+  }
 }
 
 
