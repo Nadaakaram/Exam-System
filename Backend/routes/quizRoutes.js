@@ -13,6 +13,10 @@ router.get('/', quizController.getAllQuizzes);
 
 // GET: Get quiz by ID
 router.get('/:id', quizController.getQuizById);
+// DELETE: Delete quiz by ID
+router.delete('/:id', quizController.deleteQuiz);
+// PUT: Update quiz by ID
+router.put('/:id', quizController.updateQuiz);
 
 
 // router.get('/quizzes/:id', quizController.getQuizById);

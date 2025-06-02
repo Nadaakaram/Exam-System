@@ -17,7 +17,7 @@ import { ResultComponent} from './pages/result/result.component';
 
 
 export const routes: Routes = [
-  {path: '', redirectTo: '/register', pathMatch: 'full' }, // Redirect to register page by default
+  {path: '', redirectTo: '/register', pathMatch: 'full' },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'student-dashboard', component: StudentDashboardComponent },

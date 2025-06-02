@@ -1,24 +1,42 @@
 <div class="students-container">
-  <h2>Students and Exam Results</h2>
+  <h2 class="students-title">Students and Exam Results</h2>
 
-  <div *ngFor="let student of students" class="student-card">
-    <h3>{{ student.name }}</h3>
-    <p>Email: {{ student.email }}</p>
+  @for (student of users; track student.id) {
+    @if(student.role !== "admin") {
+    <div class="student-card">
+      <div class="student-header">
+        <h3>{{ student.name }}</h3>
+      </div>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Exam</th>
-          <th>Score</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let exam of student.exams">
-          <td>{{ exam.name }}</td>
-          <td>{{ exam.score }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+      @if (student.exams?.length > 0) {
+        <table class="exam-table">
+          <thead>
+            <tr>
+              <th>Exam</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (exam of student.exams; track exam.id) {
+              <tr>
+                <td>{{ exam.name }}</td>
+                <td>
+                  <span class="score-badge" [ngClass]="{
+                    'high-score': exam.score >= 80,
+                    'mid-score': exam.score >= 50 && exam.score < 80,
+                    'low-score': exam.score < 50
+                  }">
+                    {{ exam.score }}%
+                  </span>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      } @else {
+        <p class="no-exams">No exams found.</p>
+      }
+    </div>
+    }
+  }
 </div>
-
