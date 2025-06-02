@@ -1,1 +1,35 @@
-<p>result works!</p>
+<div class="result-container">
+  <div class="result-card">
+    <h1 class="result-title">Your Score for {{quizTitle}}</h1>
+
+    <svg class="gradient-defs">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#AD8AE8" />
+      <stop offset="100%" stop-color="#FBECFF" />
+    </linearGradient>
+  </defs>
+</svg>
+
+<div class="score-circle">
+  <div class="score-value">
+    {{score}}<span>/{{totalQuestions}}</span>
+  </div>
+  <svg class="progress-ring" width="220" height="220">
+    <circle class="progress-ring-circle-bg" r="100" cx="110" cy="110"/>
+    <circle class="progress-ring-circle" r="100" cx="110" cy="110"/>
+  </svg>
+</div>
+
+    
+    <div class="congrats-message">
+      <h2>Congratulations</h2>
+      <p>Great job, {{userName}}! </p>
+    </div>
+    
+    <div class="action-buttons">
+      <button class="home-btn" (click)="goToDashboard()">Back to Home</button>
+    </div>
+  </div>
+</div>
+

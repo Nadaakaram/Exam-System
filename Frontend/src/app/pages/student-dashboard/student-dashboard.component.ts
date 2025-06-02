@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { QuizService } from '../../services/quiz.service';
 import { Router, Routes } from '@angular/router';
 import { RouterModule } from '@angular/router';
+
 import { UserService } from '../../services/user.service';
 import { SidebarComponent } from "../../components/sidebar/sidebar.component";
 import { SDashboardComponent } from "../../components/s-dashboard/s-dashboard.component";
@@ -14,6 +15,8 @@ import { SResultsComponent } from "../../components/s-results/s-results.componen
   selector: 'app-student-dashboard',
   imports: [CommonModule, FormsModule, RouterModule, SidebarComponent, SDashboardComponent, ProfileComponent, SResultsComponent],
 templateUrl: './student-dashboard.component.html',
+
+
   styleUrl: './student-dashboard.component.css'
 })
 export class StudentDashboardComponent implements OnInit {
@@ -25,14 +28,23 @@ selectedComponent: string = 'sdashboard';
 onComponentChanged(component: string) {
   this.selectedComponent = component;
 }
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
   ngOnInit(): void {
       this.userService.getCurrentUser().subscribe((user) => {
-    this.userService.setUser(user); 
-  })
+    this.userService.setUser(user);
+  });
+
   }
+
+  // navigateToQuiz(quizId: string): void {
+  //   this.router.navigate(['/quiz', quizId]);
+  // }
 }
 
+
+// navigateToQuiz(quizId: string) {
+//   this.router.navigate(['/quiz', quizId]);
+// }
 
 
 
