@@ -8,7 +8,7 @@ import {
   FormControl
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { QuizService } from '../../services/QuizService';
+import { QuizService } from '../../services/quiz.service';
 
 @Component({
   selector: 'app-create-quiz',

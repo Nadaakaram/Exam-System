@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
-import { QuizService } from '../../services/QuizService';
+import { QuizService } from '../../services/quiz.service';
 @Component({
   selector: 'app-s-dashboard',
   imports: [CommonModule, RouterModule, FormsModule],

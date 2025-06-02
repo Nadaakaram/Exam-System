@@ -2,7 +2,7 @@ import { LoginComponent } from './../login/login.component';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { QuizService } from '../../services/QuizService';
+import { QuizService } from '../../services/quiz.service';
 import { CreateQuizComponent } from "../create-quiz/create-quiz.component";
 import { ExamsComponent } from "../exams/exams.component";
 import { StudentsComponent } from "../students/students.component";
