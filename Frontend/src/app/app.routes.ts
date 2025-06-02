@@ -11,7 +11,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { SDashboardComponent } from './components/s-dashboard/s-dashboard.component';
 import { SResultsComponent } from './components/s-results/s-results.component';
 export const routes: Routes = [
-  {path: '', redirectTo: '/register', pathMatch: 'full' }, // Redirect to register page by default
+  {path: '', redirectTo: '/register', pathMatch: 'full' },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'student-dashboard', component: StudentDashboardComponent },

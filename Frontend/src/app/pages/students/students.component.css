@@ -1,0 +1,76 @@
+.students-container {
+  padding: 30px;
+  max-width: 1000px;
+  margin: auto;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.students-title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: #2c3e50;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.student-card {
+  background: #fdfdfd;
+  border: 1px solid #ddd;
+  border-left: 5px solid #3498db;
+  margin-bottom: 25px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.student-header h3 {
+  margin: 0;
+  color: #34495e;
+  font-size: 22px;
+}
+
+.exam-table {
+  width: 100%;
+  margin-top: 15px;
+  border-collapse: collapse;
+}
+
+.exam-table th, .exam-table td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.exam-table th {
+  background-color: #ecf0f1;
+  color: #2c3e50;
+}
+
+.score-badge {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.high-score {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.mid-score {
+  background-color: #f1c40f;
+  color: white;
+}
+
+.low-score {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.no-exams {
+  margin-top: 10px;
+  color: #888;
+  font-style: italic;
+}

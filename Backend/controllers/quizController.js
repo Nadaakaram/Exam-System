@@ -66,3 +66,30 @@ exports.getQuizById = async (req, res) => {
     res.status(500).json({ message: 'Server Error', error: err.message });
   }
 };
+// DELETE /api/quizzes/:id
+exports.deleteQuiz = async (req, res) => {
+  try {
+    const deletedQuiz = await Quiz.findByIdAndDelete(req.params.id);
+    if (!deletedQuiz) {
+      return res.status(404).json({ message: 'Quiz not found' });
+    }
+    res.json({ message: 'Quiz deleted successfully' });
+  } catch (err) {
+    console.error('Error deleting quiz:', err);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+// controllers/quizController.js
+exports.updateQuiz = async (req, res) => {
+  try {
+    const updatedQuiz = await Quiz.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!updatedQuiz) {
+      return res.status(404).json({ message: 'Quiz not found' });
+    }
+    res.json(updatedQuiz);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+};
+
+

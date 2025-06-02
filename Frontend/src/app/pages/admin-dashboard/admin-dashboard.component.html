@@ -5,10 +5,10 @@
       <h2>Tabor Study</h2>
       <ul>
         <li [class.active]="currentSection === 'dashboard'" (click)="setSection('dashboard')">Dashboard</li>
-        <!-- <li [class.active]="currentSection === 'prize-quizzes'" (click)="setSection('prize-quizzes')">Prize Quizzes</li> -->
-        <li [class.active]="currentSection === 'exams'" (click)="setSection('exams')">Exams</li>
+        <!-- <li [class.active]="currentSection === 'exams'" (click)="setSection('exams')">Exams</li> -->
         <li [class.active]="currentSection === 'students'" (click)="setSection('students')">Students</li>
-        <li>Logout</li>
+        <li [class.active]="currentSection === 'Logout'" (click)="setSection('Logout')">Logout</li>
+
       </ul>
     </div>
 
@@ -20,51 +20,54 @@
             <h2>Prize Quizzes</h2>
             <button class="add-btn" (click)="toggleCreateQuiz()">+ Add New Quiz</button>
           </div>
+
           @if (!showCreateQuiz) {
             <div class="filters">
-              <input type="text" placeholder="Search..." />
+<input type="text" placeholder="Search..." [(ngModel)]="searchText" (input)="onSearchChange()" />
             </div>
-            <table>
+
+            <table class="quiz-table">
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <!-- <th>Description</th>
-                  <th>Level</th>
-                  <th>Created Date</th>
-                  <th>Exam Status</th>
-                  <th>Category</th>
-                  <th>Status</th>
-                  <th>Action</th> -->
+                  <th>Icon</th>
+                  <th>Title</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let quiz of quizzes">
-                  <td>{{ quiz.title }}</td>
-                  <!-- <td>{{ quiz.description }}</td>
-                  <td>{{ quiz.level }}</td>
-                  <td>{{ quiz.date }}</td> -->
-                  <td><span class="status" [ngClass]="quiz.examStatus">{{ quiz.examStatus }}</span></td>
-                  <!-- <td>{{ quiz.category }}</td>
-                  <td><span class="label">{{ quiz.status }}</span></td> -->
-                  <td>
-                    <button class="action-btn edit-btn"><i class="bi bi-pencil-square"></i>Edit</button>
-                    <button class="action-btn delete-btn"><i class="bi bi-trash"></i>Delete</button>
-                  </td>
-                </tr>
-              </tbody>
+  <tr *ngFor="let quiz of filteredQuizzes">
+    <td>
+      <img [src]="quiz.icon" alt="{{ quiz.title }}" width="30" height="30" />
+    </td>
+    <td>{{ quiz.title }}</td>
+   
+    <td>
+      <button class="action-btn edit-btn" (click)="editQuiz(quiz)">
+        <i class="bi bi-pencil-square"></i> Edit
+      </button>
+      <button class="action-btn delete-btn" (click)="deleteQuiz(quiz._id)">
+        <i class="bi bi-trash"></i> Delete
+      </button>
+    </td>
+  </tr>
+</tbody>
+
             </table>
           } @else {
-            <app-create-quiz (backToDashboard)="toggleCreateQuiz()"></app-create-quiz>
+            <app-create-quiz 
+              [quizData]="selectedQuiz" 
+              (backToDashboard)="toggleCreateQuiz(); selectedQuiz = null">
+            </app-create-quiz>
           }
         }
+
         @case ('exams') {
           <app-exams></app-exams>
         }
-     
+
         @case ('students') {
           <app-students></app-students>
         }
-     
       }
     </div>
   </div>

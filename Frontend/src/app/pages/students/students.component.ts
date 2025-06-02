@@ -1,21 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { Student, StudentService } from '../../services/student.service';
+import { UserService } from '../../services/user.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-students',
-  imports: [],
   templateUrl: './students.component.html',
-  styleUrl: './students.component.css'
+  styleUrls: ['./students.component.css'],
+  imports: [CommonModule]
 })
 export class StudentsComponent implements OnInit {
-   students: Student[] = [];
+  users: any[] = [];
+  errorMessage = '';
 
-  constructor(private studentService: StudentService) {}
+  constructor(private userService: UserService) {}
 
   ngOnInit() {
-    this.studentService.getStudents().subscribe((data) => {
-      this.students = data;
+    this.userService.getAllUsers().subscribe({
+      next: (data) => {
+        this.users = data;
+      },
+      error: (error) => {
+        this.errorMessage = 'Failed to load users.';
+        // console.error('Error fetching users:', error);
+      }
     });
   }
-
 }
