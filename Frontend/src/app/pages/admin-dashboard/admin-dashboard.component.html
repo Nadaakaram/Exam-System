@@ -1,7 +1,7 @@
 <div class="dashboard-container">
   <div class="dashboard-card">
     <div class="sidebar">
-      <h2>Tabor Study</h2>
+      <h2>Quizzes</h2>
       <ul>
         <li [class.active]="currentSection === 'dashboard'" (click)="setSection('dashboard')">
           <i class="bi bi-grid-1x2-fill sidebar-icon"></i> Dashboard
@@ -19,7 +19,7 @@
       @switch (currentSection) {
         @case ('dashboard') {
           <div class="header">
-            <h2>Prize Quizzes</h2>
+            <h2>Quiz List</h2>
             <button class="add-btn" (click)="toggleCreateQuiz()">
               <i class="bi bi-plus-circle-fill"></i> Add New Quiz
             </button>
