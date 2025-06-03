@@ -7,7 +7,6 @@ export interface Quiz {
 }
 
 export interface Question {
-//   _id?: string;
   questionText: string;
   options: { optionText: string; isCorrect: boolean }[];
   correctAnswer: number;

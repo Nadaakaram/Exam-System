@@ -21,7 +21,6 @@ export class StudentsComponent implements OnInit {
       },
       error: (error) => {
         this.errorMessage = 'Failed to load users.';
-        // console.error('Error fetching users:', error);
       }
     });
   }

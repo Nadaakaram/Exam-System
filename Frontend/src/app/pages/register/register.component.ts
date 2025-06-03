@@ -56,7 +56,7 @@ export class RegisterComponent implements OnInit {
       this.authService.register({ name, email, password }).subscribe({
         next: (res: any) => {
           console.log('Registration successful!', res);
-          this.router.navigate(['/login']); // Navigate to login page after successful registration
+          this.router.navigate(['/login']); 
         },
         error: (err: any) => {
           if (err.error.msg === 'Email already exists') {

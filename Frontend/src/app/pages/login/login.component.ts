@@ -30,8 +30,8 @@ export class LoginComponent implements OnInit {
       this.authService.login({ email, password }).subscribe({
         next: (res: any) => {
           console.log('Login successful!', res);
-          localStorage.setItem('token', res.token); // Store the token in localStorage
-          localStorage.setItem('role', res.user.role); // Store user info in localStorage
+          localStorage.setItem('token', res.token);
+          localStorage.setItem('role', res.user.role);
           // this.router.navigate(['/student-dashboard']);
 
           if(res.user.role === 'admin') {

@@ -21,7 +21,6 @@
     />
   </div>
 
-  <!-- <h3 class="h5 fw-semibold text-dark mb-3">Categories</h3> -->
   <div
     class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-3 mb-4"
   >
@@ -66,14 +65,18 @@
         </div>
       </div>
 
-      <div
-        class="btn btn-primary btn-sm rounded-pill px-4 quiz-btn"
-
-       [routerLink]="['/quiz', quiz._id]"
-
-      >
-        Start Quiz
-      </div>
+      @if (!userResults[quiz?.title]) {
+        <div
+          class="btn btn-primary btn-sm rounded-pill px-4 quiz-btn"
+          [routerLink]="['/quiz', quiz._id]"
+        >
+          Start Quiz
+        </div>
+      }@else {
+         <div class="badge bg-success rounded-pill px-4 py-2">
+          Completed ({{ userResults[quiz?.title].score }} / {{ userResults[quiz?.title].total }})
+         </div>
+      }
     </div>
     }
   </div>

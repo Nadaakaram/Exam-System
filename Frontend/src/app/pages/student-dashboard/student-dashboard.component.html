@@ -1,7 +1,5 @@
-<!-- <div class="d-flex" style="min-height: 100vh;"> -->
 <app-sidebar (componentChanged)="onComponentChanged($event)"></app-sidebar>
 <div class="main-content">
-  <!-- <router-outlet></router-outlet> -->
    @if(selectedComponent === 'sdashboard') {
     <app-s-dashboard></app-s-dashboard>
    }
@@ -11,11 +9,8 @@
     @if(selectedComponent === 'profile') {
       <app-profile></app-profile>
     }
-    <!-- @if(selectedComponent === 'logout') {
 
-    } -->
 </div>
 
-<!-- <app-s-dashboard></app-s-dashboard> -->
-<!-- </div> -->
+
 

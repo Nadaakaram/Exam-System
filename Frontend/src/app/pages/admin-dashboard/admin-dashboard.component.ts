@@ -6,19 +6,18 @@ import { QuizService } from '../../services/quiz.service';
 import { CreateQuizComponent } from "../create-quiz/create-quiz.component";
 import { ExamsComponent } from "../exams/exams.component";
 import { StudentsComponent } from "../students/students.component";
-import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-dashboard',
   standalone: true,
-  imports: [CommonModule, CreateQuizComponent, RouterModule, ExamsComponent, StudentsComponent, FormsModule, LoginComponent],
+  imports: [CommonModule, CreateQuizComponent, RouterModule, ExamsComponent, StudentsComponent, FormsModule],
   templateUrl: './admin-dashboard.component.html',
   styleUrls: ['./admin-dashboard.component.css']
 })
 export class AdminDashboardComponent implements OnInit {
-  currentSection: string = 'dashboard';  
+  currentSection: string = 'dashboard';
   searchText: string = '';
   showCreateQuiz: boolean = false;
   quizzes: any[] = [];
@@ -52,7 +51,7 @@ export class AdminDashboardComponent implements OnInit {
     this.QuizService.getAllQuizzes().subscribe({
       next: (data) => {
         this.quizzes = data;
-        this.applySearchFilter(); 
+        this.applySearchFilter();
       },
       error: (err) => console.error('Error loading quizzes', err)
     });
@@ -74,7 +73,7 @@ logout() {
   }
 
   onSearchChange() {
-    this.applySearchFilter(); 
+    this.applySearchFilter();
   }
 
   editQuiz(quiz: any) {

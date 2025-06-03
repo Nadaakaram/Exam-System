@@ -27,8 +27,8 @@ export class ResultComponent implements OnInit {
       percentage: number,
       quizTitle: string
     };
-    
-    console.log('Navigation state:', state); 
+
+    console.log('Navigation state:', state);
 
     if (state) {
       this.score = state.score;
@@ -37,14 +37,13 @@ export class ResultComponent implements OnInit {
       this.quizTitle = state.quizTitle || '';
     } else {
       this.router.navigate(['/']);
-    } 
+    }
   }
 
   ngOnInit(): void {
     const currentUser = this.authService.getCurrentUser();
 
     if (typeof currentUser.subscribe === 'function') {
-      // Observable
       currentUser.subscribe({
         next: (user: any) => {
           this.userName = user.name || 'User';
@@ -54,13 +53,12 @@ export class ResultComponent implements OnInit {
         }
       });
     } else if (typeof currentUser === 'object') {
-      // localStorage
       this.userName = currentUser.name || 'User';
     }
   }
 
   goToDashboard(): void {
-    this.router.navigate(['/student-dashboard']); 
+    this.router.navigate(['/student-dashboard']);
   }
 
 }

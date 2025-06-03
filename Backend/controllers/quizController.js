@@ -23,7 +23,6 @@ function getIconByTitle(title) {
   return "https://placehold.co/50x50?text=Quiz";
 }
 
-// POST /api/quizzes
 exports.createQuiz = async (req, res) => {
   try {
     const { title, questions } = req.body;
@@ -44,7 +43,6 @@ exports.createQuiz = async (req, res) => {
   }
 };
 
-// GET /api/quizzes
 exports.getAllQuizzes = async (req, res) => {
   try {
     const quizzes = await Quiz.find().populate('questions');
@@ -55,7 +53,6 @@ exports.getAllQuizzes = async (req, res) => {
   }
 };
 
-// [GET] Get single quiz by ID
 exports.getQuizById = async (req, res) => {
   try {
     const quiz = await Quiz.findById(req.params.id);
@@ -105,7 +102,8 @@ exports.submitQuiz = async (req, res) => {
       $push: {
         exams: {
           name: quiz.title,
-          score: score
+          score: score,
+          total: quiz.questions.length
         }
       }
     });
@@ -121,7 +119,7 @@ exports.submitQuiz = async (req, res) => {
   }
 };
 
-// Get user results
+
 exports.getUserResults = async (req, res) => {
   try {
     const results = await Result.find({ userId: req.user.id });
@@ -131,7 +129,6 @@ exports.getUserResults = async (req, res) => {
   }
 };
 
-// DELETE /api/quizzes/:id
 exports.deleteQuiz = async (req, res) => {
   try {
     const deletedQuiz = await Quiz.findByIdAndDelete(req.params.id);
@@ -144,7 +141,8 @@ exports.deleteQuiz = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
-// controllers/quizController.js
+
+
 exports.updateQuiz = async (req, res) => {
   try {
     const updatedQuiz = await Quiz.findByIdAndUpdate(req.params.id, req.body, { new: true });

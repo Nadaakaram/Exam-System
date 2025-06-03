@@ -42,9 +42,6 @@ onComponentChanged(component: string) {
 }
 
 
-// navigateToQuiz(quizId: string) {
-//   this.router.navigate(['/quiz', quizId]);
-// }
 
 
 

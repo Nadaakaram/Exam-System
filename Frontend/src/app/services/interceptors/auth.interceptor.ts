@@ -1,5 +1,3 @@
-// src/app/services/interceptors/auth.interceptor.ts
-
 import { HttpInterceptorFn, HttpRequest, HttpHandlerFn } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HttpEvent } from '@angular/common/http';

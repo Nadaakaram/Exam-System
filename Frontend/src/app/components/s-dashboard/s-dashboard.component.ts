@@ -13,17 +13,20 @@ import { QuizService } from '../../services/quiz.service';
 export class SDashboardComponent  implements OnInit {
   searchText = '';
   quizzes: any[] = [];
+userResults: { [quizId: string]: { score: number, total: number } } = {};
 
     constructor(private quizService: QuizService) {}
   ngOnInit(): void {
     this.loadQuizzes();
-    // this.loadUser();
+  this.loadUserResults();
+
   }
 
     loadQuizzes(): void {
     this.quizService.getAllQuizzes().subscribe({
       next: (data) => {
         this.quizzes = data;
+        console.log('Quizzes loaded:', this.quizzes);
       },
       error: (err) => {
         console.error('Error loading quizzes', err);
@@ -37,6 +40,25 @@ export class SDashboardComponent  implements OnInit {
     }
     return this.quizzes.filter(quiz => quiz.title.toLowerCase().includes(this.searchText.toLowerCase()));
   }
+
+loadUserResults(): void {
+  this.quizService.getMyResults().subscribe({
+    next: (data) => {
+      this.userResults = {};
+      console.log("raw exams", data);
+      data.forEach(exam => {
+        this.userResults[exam.name] = {
+          score: exam.score,
+          total: exam.total
+        };
+      });
+      console.log('User results loaded:', this.userResults);
+    },
+    error: (err) => {
+      console.error('Error loading results', err);
+    }
+  });
+}
 
 
 }

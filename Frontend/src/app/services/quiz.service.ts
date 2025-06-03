@@ -80,7 +80,14 @@ export class QuizService {
     return this.http.put(`${this.apiUrl}/${id}`, quizData, { headers });
   }
 
+getMyResults(): Observable<any[]> {
+  const token = localStorage.getItem('token');
+  const headers = new HttpHeaders({
+    Authorization: `Bearer ${token}`
+  });
 
+  return this.http.get<any[]>('http://localhost:5000/api/results/me', { headers });
+}
 }
 
 

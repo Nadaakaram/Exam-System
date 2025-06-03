@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 
 const examSchema = new mongoose.Schema({
   name: String,   
-  score: Number   
+  score: Number   ,
+  total: Number
 });
 
 const userSchema = new mongoose.Schema({

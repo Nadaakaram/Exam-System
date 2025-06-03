@@ -20,7 +20,7 @@ exports.updateCurrentUser = async (req, res) => {
     ).select("-password");
 
     if (!updatedUser) {
-      return res.status(404).json({ message: "User not found." }); // من المفترض عدم حدوث هذا لأن المستخدم مصادق عليه
+      return res.status(404).json({ message: "User not found." }); 
     }
 
     res.json({ message: "Profile updated successfully", user: updatedUser });
@@ -33,7 +33,7 @@ exports.updateCurrentUser = async (req, res) => {
 
 exports.getAllUsers = async (req, res) => {
   try {
-    const users = await User.find().select('-password'); // بدون الباسورد
+    const users = await User.find().select('-password');
     res.status(200).json(users);
   } catch (error) {
     console.error('❌ Error fetching users:', error.message);

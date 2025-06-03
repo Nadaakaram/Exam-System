@@ -1,29 +1,33 @@
 <div class="dashboard-container">
   <div class="dashboard-card">
-    <!-- Sidebar -->
     <div class="sidebar">
       <h2>Tabor Study</h2>
       <ul>
-        <li [class.active]="currentSection === 'dashboard'" (click)="setSection('dashboard')">Dashboard</li>
-        <!-- <li [class.active]="currentSection === 'exams'" (click)="setSection('exams')">Exams</li> -->
-        <li [class.active]="currentSection === 'students'" (click)="setSection('students')">Students</li>
-        <li [class.active]="currentSection === 'Logout'" (click)="setSection('Logout')">Logout</li>
-
+        <li [class.active]="currentSection === 'dashboard'" (click)="setSection('dashboard')">
+          <i class="bi bi-grid-1x2-fill sidebar-icon"></i> Dashboard
+        </li>
+        <li [class.active]="currentSection === 'students'" (click)="setSection('students')">
+          <i class="bi bi-people-fill sidebar-icon"></i> Students
+        </li>
       </ul>
+      <button class="logout-btn" (click)="logout()">
+        <i class="bi bi-box-arrow-right logout-icon"></i> Logout
+      </button>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content">
       @switch (currentSection) {
         @case ('dashboard') {
           <div class="header">
             <h2>Prize Quizzes</h2>
-            <button class="add-btn" (click)="toggleCreateQuiz()">+ Add New Quiz</button>
+            <button class="add-btn" (click)="toggleCreateQuiz()">
+              <i class="bi bi-plus-circle-fill"></i> Add New Quiz
+            </button>
           </div>
 
           @if (!showCreateQuiz) {
             <div class="filters">
-<input type="text" placeholder="Search..." [(ngModel)]="searchText" (input)="onSearchChange()" />
+              <input type="text" placeholder="Search..." [(ngModel)]="searchText" (input)="onSearchChange()" />
             </div>
 
             <table class="quiz-table">
@@ -35,27 +39,25 @@
                 </tr>
               </thead>
               <tbody>
-  <tr *ngFor="let quiz of filteredQuizzes">
-    <td>
-      <img [src]="quiz.icon" alt="{{ quiz.title }}" width="30" height="30" />
-    </td>
-    <td>{{ quiz.title }}</td>
-   
-    <td>
-      <button class="action-btn edit-btn" (click)="editQuiz(quiz)">
-        <i class="bi bi-pencil-square"></i> Edit
-      </button>
-      <button class="action-btn delete-btn" (click)="deleteQuiz(quiz._id)">
-        <i class="bi bi-trash"></i> Delete
-      </button>
-    </td>
-  </tr>
-</tbody>
-
+                <tr *ngFor="let quiz of filteredQuizzes">
+                  <td>
+                    <img [src]="quiz.icon" alt="{{ quiz.title }}" width="30" height="30" class="quiz-icon" />
+                  </td>
+                  <td>{{ quiz.title }}</td>
+                  <td>
+                    <button class="action-btn edit-btn" (click)="editQuiz(quiz)">
+                      <i class="bi bi-pencil-square"></i> Edit
+                    </button>
+                    <button class="action-btn delete-btn" (click)="deleteQuiz(quiz._id)">
+                      <i class="bi bi-trash"></i> Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
             </table>
           } @else {
-            <app-create-quiz 
-              [quizData]="selectedQuiz" 
+            <app-create-quiz
+              [quizData]="selectedQuiz"
               (backToDashboard)="toggleCreateQuiz(); selectedQuiz = null">
             </app-create-quiz>
           }
@@ -70,5 +72,5 @@
         }
       }
     </div>
-  </div>
+</div>
 </div>
