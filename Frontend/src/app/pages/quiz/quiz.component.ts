@@ -4,6 +4,10 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuizService } from '../../services/quiz.service';
 import { Quiz, Question, Result } from '../../models/quiz.model';
+import { CanExit } from '../../guards/can-exit.guard';
+import { HostListener } from '@angular/core';
+
+
 
 @Component({
   standalone: true,
@@ -12,7 +16,9 @@ import { Quiz, Question, Result } from '../../models/quiz.model';
   templateUrl: './quiz.component.html',
   styleUrl: './quiz.component.css'
 })
-export class QuizComponent implements OnInit {
+
+
+export class QuizComponent implements OnInit, CanExit  {
 
   quiz: Quiz | null = null;
   currentQuestionIndex = 0;
@@ -30,12 +36,32 @@ export class QuizComponent implements OnInit {
       selectedAnswer: [null]
     });}
 
+
+
   ngOnInit(): void {
+    this.preventBackButton();
     const quizId = this.route.snapshot.paramMap.get('id');
     if (quizId) {
       this.loadQuiz(quizId);
     }
   }
+
+  @HostListener('window:beforeunload', ['$event'])
+  unloadNotification(event: BeforeUnloadEvent): void {
+    if (!this.isSubmitted) {
+      event.preventDefault();
+      event.returnValue = '';
+    }
+  }
+
+  preventBackButton(): void {
+  history.pushState(null, '', location.href);
+  window.onpopstate = () => {
+    history.pushState(null, '', location.href);
+  };
+}
+
+
 
   loadQuiz(quizId: string): void {
     this.quizService.getQuizById(quizId).subscribe({
@@ -110,6 +136,20 @@ export class QuizComponent implements OnInit {
   isAllAnswered(): boolean {
     return this.userAnswers.every(answer => answer !== null);
   }
+
+
+  canExit(): boolean {
+    return this.isSubmitted; 
+  }
+
+
+
+
+
+
+
+
+
   
 }
 
