@@ -21,12 +21,13 @@ private apiUrl = `${environment.apiUrl}/auth`;
     return this.http.post(`${this.baseUrl}/login`, credentials).pipe(
       tap((response: any) => {
         localStorage.setItem('token', response.token);
+        localStorage.setItem('currentUser', JSON.stringify(response.user));
       })
     );
   }
 
   getCurrentUser() {
-    
+
     const userData = localStorage.getItem('currentUser');
     if (userData) return JSON.parse(userData);
 
